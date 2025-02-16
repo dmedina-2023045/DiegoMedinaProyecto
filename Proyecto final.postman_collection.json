@@ -1,0 +1,434 @@
+{
+	"info": {
+		"_postman_id": "e0e53984-828d-48d7-9e30-4054c49a3d47",
+		"name": "Proyecto final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956971"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:2636/test",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Diego",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Medina",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "dmedina",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dmedina-2023045@kinal.edu.gt",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Hola123.$",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "45910878",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/register",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userLoggin",
+									"value": "dmedina",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Hola123.$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/login",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IxODUzNjJjYmExMzRiNzFkODRjMDAiLCJ1c2VybmFtZSI6ImRtZWRpbmEiLCJuYW1lIjoiRGllZ28iLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzM5Njg3MzA2LCJleHAiOjE3Mzk2OTgxMDZ9.LTEoLHjSqatT7FZrZDAOvzSFpntmiXJyEhMgFDFXnuw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getUsers",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IxODUzNjJjYmExMzRiNzFkODRjMDAiLCJ1c2VybmFtZSI6ImRtZWRpbmEiLCJuYW1lIjoiRGllZ28iLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzM5Njg3NTg3LCJleHAiOjE3Mzk2OTgzODd9.BuuEKfrDbn6DOaGmsbLhB5fIW5I0WKttaNLx-mXY8Vk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:2636/getUserById/67b185362cba134b71d84c00",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getUserById",
+								"67b185362cba134b71d84c00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IxODUzNjJjYmExMzRiNzFkODRjMDAiLCJ1c2VybmFtZSI6ImRtZWRpbmEiLCJuYW1lIjoiRGllZ28iLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzM5Njg3NTg3LCJleHAiOjE3Mzk2OTgzODd9.BuuEKfrDbn6DOaGmsbLhB5fIW5I0WKttaNLx-mXY8Vk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Alexander",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/updateUser/67b185362cba134b71d84c00",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"updateUser",
+								"67b185362cba134b71d84c00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IxODgxZjk1ZDE1MjRhOTQxZGI2MzMiLCJ1c2VybmFtZSI6ImRtZWRpbmEiLCJuYW1lIjoiRGllZ28iLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzM5Njg3OTcyLCJleHAiOjE3Mzk2OTg3NzJ9.SIRonH8ZXhArhzTB3OYkmS9YyHoESfORLNOmj__Hb_Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "currentPassword",
+									"value": "Hola123.$",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "Diego123.$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/updatePassword/",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"updatePassword",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IxODUzNjJjYmExMzRiNzFkODRjMDAiLCJ1c2VybmFtZSI6ImRtZWRpbmEiLCJuYW1lIjoiRGllZ28iLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzM5Njg3NTg3LCJleHAiOjE3Mzk2OTgzODd9.BuuEKfrDbn6DOaGmsbLhB5fIW5I0WKttaNLx-mXY8Vk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/deleteUser/67b185362cba134b71d84c00",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"deleteUser",
+								"67b185362cba134b71d84c00"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Test",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "addCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyNWQ3OTgwMDJlY2NlODBhYTI0OGQiLCJ1c2VybmFtZSI6InJjYXJkb25hIiwibmFtZSI6IlJhZmFlbCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczOTc0MjYwMSwiZXhwIjoxNzM5NzUzNDAxfQ.DXDyVhgL3xCr0EsQQjz7Q6VxUjTa8qS1iCnlJf84zUs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Video card",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Video card nvida 4070 by asus",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/addCategory",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"addCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyNWQ3OTgwMDJlY2NlODBhYTI0OGQiLCJ1c2VybmFtZSI6InJjYXJkb25hIiwibmFtZSI6IlJhZmFlbCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczOTc0MjYwMSwiZXhwIjoxNzM5NzUzNDAxfQ.DXDyVhgL3xCr0EsQQjz7Q6VxUjTa8qS1iCnlJf84zUs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getCategories",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategorieById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyNWQ3OTgwMDJlY2NlODBhYTI0OGQiLCJ1c2VybmFtZSI6InJjYXJkb25hIiwibmFtZSI6IlJhZmFlbCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczOTc0MjYwMSwiZXhwIjoxNzM5NzUzNDAxfQ.DXDyVhgL3xCr0EsQQjz7Q6VxUjTa8qS1iCnlJf84zUs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getCategories",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategorie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IyNWQ3OTgwMDJlY2NlODBhYTI0OGQiLCJ1c2VybmFtZSI6InJjYXJkb25hIiwibmFtZSI6IlJhZmFlbCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczOTc0MjYwMSwiZXhwIjoxNzM5NzUzNDAxfQ.DXDyVhgL3xCr0EsQQjz7Q6VxUjTa8qS1iCnlJf84zUs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Graphic card",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/updateCategorie/67b25e35ce5781a9bfbef0f0",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"updateCategorie",
+								"67b25e35ce5781a9bfbef0f0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:2636/deleteCategorie/67b25e35ce5781a9bfbef0f0",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"deleteCategorie",
+								"67b25e35ce5781a9bfbef0f0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
