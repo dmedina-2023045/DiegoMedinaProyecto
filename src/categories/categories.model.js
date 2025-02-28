@@ -2,7 +2,7 @@
 
 import { Schema, model } from "mongoose"
 
-const categorySchema = Schema ({
+const categorieSchema = Schema ({
     name: {
         type: String,
         required: [true,'Name is required'],
@@ -16,4 +16,4 @@ const categorySchema = Schema ({
     }
 })
 
-export default model('Category', categorySchema)
+export default model('Categorie', categorieSchema)

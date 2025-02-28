@@ -1,4 +1,4 @@
-import categorySchema from './categories.model.js'
+import categorieSchema from './categories.model.js'
 
 export const test = (req, res)=>{
     console.log('Categories is running')
@@ -8,8 +8,8 @@ export const test = (req, res)=>{
 export const addCategorie = async(req, res)=>{
     try {
         let data = req.body
-        let category = new categorySchema(data)
-        await category.save()
+        let categorie = new categorieSchema(data)
+        await categorie.save()
         return res.send({message: 'Categorie saved successfully'})
     } catch (e) {
         console.error(e)
@@ -19,8 +19,8 @@ export const addCategorie = async(req, res)=>{
 
 export const getCategories = async(req, res)=>{
     try {
-        let category = await categorySchema.find()
-        return res.send(category)
+        let categorie = await categorieSchema.find()
+        return res.send(categorie)
     } catch (e) {
         console.error(e)
         return res.status(500).send({message: 'General Error'}, e)
@@ -30,7 +30,7 @@ export const getCategories = async(req, res)=>{
 export const getCategorieById = async(req,res)=>{
     try {
         const {id} = req.params
-        const category = await categorySchema.findById(id)
+        const category = await categorieSchema.findById(id)
         if (!category) return res.status(404).send(
             {success:false, message: 'Categorie not found'}
         )
@@ -52,7 +52,7 @@ export const updateCategorie = async (req, res) => {
         if (!id) return res.status(400).send(
             {message:'Your id is incorrect'}
         )
-        const updatedCategory = await categorySchema.findByIdAndUpdate(id, data, {new: true})
+        const updatedCategory = await categorieSchema.findByIdAndUpdate(id, data, {new: true})
         if (!updatedCategory) return res.status(404).send(
             {message:'Categorie not found'}
         )
@@ -69,7 +69,7 @@ export const deleteCategorie = async (req, res) => {
         if (!id) return res.status(400).send(
             { message: 'Your id is incorrect' }
         )
-        const deletedCategory = await categorySchema.findByIdAndDelete(id);
+        const deletedCategory = await categorieSchema.findByIdAndDelete(id);
         if (!deletedCategory) return res.status(404).send(
             { message: 'Categorie not found' }
         )

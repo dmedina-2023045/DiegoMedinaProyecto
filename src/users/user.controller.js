@@ -1,6 +1,28 @@
 import User from './user.model.js'
 import argon  from 'argon2'
-import { encrypt } from '../../utils/encryp.js'
+import {encrypt} from '../../utils/encryp.js'
+
+const addAdmin = async () => {
+    try {
+        const defaultAdmin = await Client.findOne({role: 'ADMIN'})
+    if (!defaultAdmin) {
+             const usuarioAdmin = new Client({
+                name: 'Diego',
+                surname: 'Medina',
+                username: `${process.env.ADMIN_USER}`,
+                password: await encrypt(`${process.env.ADMIN_PASSWORD}`),
+                phone: '45910878',
+                role: "ADMIN"
+            })
+            await usuarioAdmin.save();
+            console.log('Default administrator added succesfully')
+        }
+    } catch (e) {
+        console.error("Error adding a default administrator", e);
+    }
+};
+ 
+addAdmin();
 
 export const getUsers = async(req ,res)=>{
     try{
@@ -48,7 +70,7 @@ export const updateUser = async(req, res)=>{
 
 export const updatePassword = async (req, res) => {
     try {
-        let { id } = req.params;
+        let {id} = req.params;
         let { newPassword, oldPassword } = req.body;
         let user = await User.findById(id);
         if (!user) return res.status(404).send(
