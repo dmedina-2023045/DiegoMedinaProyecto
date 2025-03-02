@@ -33,3 +33,11 @@ export const findUser = async(id)=>{
         return false
     }
 }
+
+export const existCategorie = async(name, categorie)=>{
+    const alreadyUsername = await User.findOne({name})
+    if(alreadyUsername && alreadyUsername._id != categorie._id){
+        console.error(`Categorie ${name} already exists`)
+        throw new Error(`Categorie ${name} already exists`)
+    }
+}

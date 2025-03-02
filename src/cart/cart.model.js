@@ -1,31 +1,27 @@
-'use strict'
+import { Schema, model } from 'mongoose';
 
-import {model, Schema} from 'mongoose'
-
-const shoppingCartSchema = Schema ({
-    customer: {
+const cartSchema = Schema({
+    user: {
         type: Schema.Types.ObjectId,
-        ref: 'user',
-        required: [true, 'Customer is required']
+        ref: 'User',
+        required: true
     },
-    products: {
-        type:[{
+    products: [{
+        product: {
             type: Schema.Types.ObjectId,
-            ref: 'product',
-            required:[true, 'Product is required']
-        }]
-    },
-    quantity: {
-        type: [{
+            ref: 'Product', 
+            required: true
+        },
+        quantity: {
             type: Number,
-            required: [true, 'Quantity is required']
-        }]
-    },
+            required: true,
+            default: 1
+        }
+    }],
     total: {
         type: Number,
-        required: [true, 'Total is required']
+        default: 0
     }
 })
 
-export default model ('shoppingCart', shoppingCartSchema)
-
+export default model('Cart', cartSchema);

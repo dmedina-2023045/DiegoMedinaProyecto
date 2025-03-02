@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getProducts, addProduct, getProductById, updateProduct, deleteProduct} from "./prouct.controller";
+import { getProducts, addProduct, getProductById, updateProduct, deleteProduct} from "./prouct.controller.js";
 import {validateJwt, isAdmin} from '../../middlewares/validator.jwt.js'
 
 const api = Router()

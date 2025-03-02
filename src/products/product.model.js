@@ -1,29 +1,35 @@
-'use strict'
-
-import {Schema, model} from 'mongoose'
+import { Schema, model } from 'mongoose';
 
 const productSchema = Schema({
-    name:{
+    name: {
         type: String,
-        required: true
+        required: [true, 'Name is required']
     },
-    description:{
+    description: {
         type: String,
-        required: true
+        required: [true, 'Description is required']
+    },
+    branch: {
+        type: String,
+        required: [true, 'Branch is required']
     },
     price: {
         type: Number,
-        required: true
+        required: [true, 'Price is required']
     },
     category: {
         type: Schema.Types.ObjectId,
-        ref: 'category',
-        required: true
+        ref: 'Categorie',
+        required: [true, 'Category is required']
     },
-    stock:{
+    stock: {
         type: Number,
-        required: true
+        required: [true, 'Stock is required']
+    },
+    sales: {
+        type: Number,
+        default: 0
     }
 })
 
-export default model('product', productSchema)
+export default model('Product', productSchema)

@@ -4,12 +4,13 @@ import {encrypt} from '../../utils/encryp.js'
 
 const addAdmin = async () => {
     try {
-        const defaultAdmin = await Client.findOne({role: 'ADMIN'})
+        const defaultAdmin = await User.findOne({role: 'ADMIN'})
     if (!defaultAdmin) {
-             const usuarioAdmin = new Client({
+             const usuarioAdmin = new User({
                 name: 'Diego',
                 surname: 'Medina',
                 username: `${process.env.ADMIN_USER}`,
+                email: `${process.env.ADMIN_EMAIL}`,
                 password: await encrypt(`${process.env.ADMIN_PASSWORD}`),
                 phone: '45910878',
                 role: "ADMIN"
@@ -18,11 +19,11 @@ const addAdmin = async () => {
             console.log('Default administrator added succesfully')
         }
     } catch (e) {
-        console.error("Error adding a default administrator", e);
+        console.error("Error adding a default administrator", e)
     }
-};
+}
  
-addAdmin();
+addAdmin()
 
 export const getUsers = async(req ,res)=>{
     try{
@@ -77,18 +78,18 @@ export const updatePassword = async (req, res) => {
             { message: 'User not found' }
         );
         if (!user.password) {
-            return res.status(500).send({ message: 'Password not found in user data' });
+            return res.status(500).send({ message: 'Password not found in user data' })
         }
         let compare = await argon.verify(user.password, oldPassword);
-        if (!compare) return res.status(400).send({ message: 'Incorrect Password' });
-        user.password = await encrypt(newPassword);
+        if (!compare) return res.status(400).send({ message: 'Incorrect Password' })
+        user.password = await encrypt(newPassword)
         await user.save();
-        return res.send({ message: 'Password updated successfully' });
+        return res.send({ message: 'Password updated successfully' })
     } catch (e) {
         console.error(e);
-        return res.status(500).send({ message: 'Internal Server Error', error: e.message });
+        return res.status(500).send({ message: 'Internal Server Error', error: e.message })
     }
-};
+}
 
 export const deleteUser = async(req, res)=>{
     try {
@@ -100,6 +101,6 @@ export const deleteUser = async(req, res)=>{
             return res.send({message: 'User deleted succesfully'})
     } catch (e) {
         console.console.log(e);
-        return res.status(500).send({message: 'General Error',err: e})
+        return res.status(500).send({message: 'General Error',e})
     }   
 }

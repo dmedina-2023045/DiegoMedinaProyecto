@@ -51,3 +51,18 @@ export const updateUserValidator = [
         .custom(notRequiredField),
     validateErrorsWithoutFiles 
 ]
+
+export const addCategorievalidator = [
+    body('name', 'Name cannot be empty')
+    .notEmpty().toLowerCase().custom((name, {req})=> existCategorie(name, req.categorie)),
+    body('description', 'Description cannot be empty')
+    .notEmpty(),
+]
+
+export const updateCategorieValidator = [
+    body('name', 'Name cannot be empty')
+    .optional().notEmpty().toLowerCase().custom((name, {req})=> existCategorie(name, req.categorie)),
+    body('description', 'Description cannot be empty')
+    .optional()
+    .notEmpty(),
+]
