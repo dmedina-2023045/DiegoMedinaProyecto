@@ -21,7 +21,7 @@ export const addProduct = async (req, res) => {
 };
 
 
-export const exploreProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
     try {
         const { category, search, sort } = req.query
         let query = {}

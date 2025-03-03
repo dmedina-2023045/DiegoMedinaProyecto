@@ -8,6 +8,8 @@ import authRoutes from '../src/auth/auth.routes.js'
 import userRoutes from '../src/users/user.routes.js'
 import categoriesRoutes from '../src/categories/categories.routes.js'
 import productRoutes from '../src/products/product.routes.js'
+import cartRoutes from '../src/cart/cart.routes.js'
+import billRoutes from '../src/bills/bills.routes.js'
 
 import {limiter} from '../middlewares/rate.limit.js'
 
@@ -25,6 +27,8 @@ const routes = (app)=>{
     app.use(userRoutes)
     app.use(categoriesRoutes)
     app.use(productRoutes)
+    app.use(cartRoutes)
+    app.use(billRoutes)
 }
 
 export const initServer = ()=>{

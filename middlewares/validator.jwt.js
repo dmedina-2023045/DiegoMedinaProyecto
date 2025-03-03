@@ -26,7 +26,7 @@ export const validateJwt = async(req, res, next)=>{
 
 export const isAdmin = async(req, res, next)=>{
     try{
-        const { user } = req
+        const {user} = req
         if(!user || user.role !== 'ADMIN') return res.status(403).send(
             {
                 success: false,

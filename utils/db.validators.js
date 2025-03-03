@@ -1,4 +1,5 @@
 import User from '../src/users/user.model.js'
+import Categorie from '../src/categories/categories.model.js'
 
 export const existUsername = async(username, user)=>{
     const alreadyUsername = await User.findOne({username})
@@ -35,9 +36,10 @@ export const findUser = async(id)=>{
 }
 
 export const existCategorie = async(name, categorie)=>{
-    const alreadyUsername = await User.findOne({name})
-    if(alreadyUsername && alreadyUsername._id != categorie._id){
-        console.error(`Categorie ${name} already exists`)
-        throw new Error(`Categorie ${name} already exists`)
+    const alreadyCategorie = await Categorie.findOne({name})
+    if(alreadyCategorie && alreadyCategorie._id != categorie.uid){
+        console.error(`Categorie ${name} already exist`)
+        throw new Error(`Categorie ${name} already exist`)
     }
 }
+

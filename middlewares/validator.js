@@ -1,13 +1,13 @@
 import {body} from "express-validator"
 import {validateErrors, validateErrorsWithoutFiles} from './validate.errors.js'
-import {existEmail, existUsername, notRequiredField} from "../utils/db.validators.js"
+import {existCategorie, existEmail, existUsername, notRequiredField} from "../utils/db.validators.js"
 
 export const registerValidator = [
     body('name', 'Name cannot be empty')
         .notEmpty(),
     body('surname', 'Surname cannot be empty')
         .notEmpty(),
-        body('username', 'Username cannot be empty')
+    body('username', 'Username cannot be empty')
         .notEmpty()
         .toLowerCase(),
     body('email', 'Email cannot be empty')
@@ -52,17 +52,8 @@ export const updateUserValidator = [
     validateErrorsWithoutFiles 
 ]
 
-export const addCategorievalidator = [
-    body('name', 'Name cannot be empty')
-    .notEmpty().toLowerCase().custom((name, {req})=> existCategorie(name, req.categorie)),
-    body('description', 'Description cannot be empty')
-    .notEmpty(),
-]
-
-export const updateCategorieValidator = [
-    body('name', 'Name cannot be empty')
-    .optional().notEmpty().toLowerCase().custom((name, {req})=> existCategorie(name, req.categorie)),
-    body('description', 'Description cannot be empty')
-    .optional()
-    .notEmpty(),
+export const addCategorieValidator =[
+    body('name', 'Name cannot be empty').notEmpty().toLowerCase().custom(existCategorie),
+    body('description', 'Description cannot be empty').notEmpty(),
+    validateErrors
 ]

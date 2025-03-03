@@ -1,53 +1,38 @@
-'use strict'
+import {Schema, model} from 'mongoose'
 
-import {model, Schema} from 'mongoose'
-
-const invoiceSchema = Schema ({
-    NIT: {
-        type: String,
-        required: true 
-    },
-    customer: {
+const billSchema = Schema({
+    user: {
         type: Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'User',
         required: true
     },
-    cart: {
-        type: Schema.Types.ObjectId,
-        ref:'cart',
-        required: true
-    },
-    products: {
-        type:[{
+    products: [{
+        product: {
             type: Schema.Types.ObjectId,
-            ref: 'product',
-            required:true
-        }]
-    },
-    quantity: {
-        type: [{
+            ref: 'Product',
+            required: true
+        },
+        quantity: {
             type: Number,
             required: true
-        }]
-    },
-    date: {
-        type: Date,
-        default: Date.now
-    },
-    paymentMethod: {
+        },
+        price: {
+            type: Number,
+            required: true
+        }
+    }],
+    nit:{
         type: String,
-        required: true,
-        uppercase: true,
-        enum: ['CARD', 'CASH']
+        required: [true, 'NIT is required']
     },
     total: {
         type: Number,
         required: true
-    }, 
-    status: {
-        type: Boolean,
-        default: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
-})
+});
 
-export default model('invoice', invoiceSchema)
+export default model('Bill', billSchema);

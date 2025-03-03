@@ -9,7 +9,7 @@ const cartSchema = Schema({
     products: [{
         product: {
             type: Schema.Types.ObjectId,
-            ref: 'Product', 
+            ref: 'Product',
             required: true
         },
         quantity: {
@@ -22,6 +22,6 @@ const cartSchema = Schema({
         type: Number,
         default: 0
     }
-})
+});
 
 export default model('Cart', cartSchema);

@@ -13,7 +13,7 @@ export const register = async(req, res)=>{
         let data = req.body
         let user = new User(data)
         user.password = await encrypt(user.password)
-        user.role = 'ADMIN'
+        user.role = 'CLIENT'
         user.profilePicture = req.file?.filename ?? null 
         await user.save()
         return res.send({message: `User registration correctly done, now you can login: ${user.username}`})
