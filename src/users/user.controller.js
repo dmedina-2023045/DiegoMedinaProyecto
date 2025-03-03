@@ -6,7 +6,7 @@ const addAdmin = async () => {
     try {
         const defaultAdmin = await User.findOne({role: 'ADMIN'})
     if (!defaultAdmin) {
-             const usuarioAdmin = new User({
+        const usuarioAdmin = new User({
                 name: 'Diego',
                 surname: 'Medina',
                 username: `${process.env.ADMIN_USER}`,
@@ -19,7 +19,7 @@ const addAdmin = async () => {
             console.log('Default administrator added succesfully')
         }
     } catch (e) {
-        console.error("Error adding a default administrator", e)
+        console.error('General error', e)
     }
 }
  
@@ -30,9 +30,11 @@ export const getUsers = async(req ,res)=>{
         const {limit = 20, skip = 0 } = req.query
         const users = await User.find().skip(skip).limit(limit)
         if(users.length == 0) return res.status(404).send(
-            {success: false, message:'Users not found'}
+            {
+                success: false, message:'Users not found'
+            }
         )
-        return res.send({success: true, message: 'Users found: ', users, total: users.length})
+        return res.send({success: true, message: 'Users found: ', users})
     }catch(e){
         console.error(e)
         return res.status(500).send({success: false, message: 'General error', e})
@@ -45,7 +47,9 @@ export const getUserById = async(req, res)=>{
         let {id} = req.params
         let user = await User.findById(id)
         if(!user) return res.status(404).send(
-        {success: false, message: 'User not found'}
+            {
+                success: false, message: 'User not found'
+            }
         )
         return res.send({ success: true, message: 'User found: ', user})
     } catch (e) {
@@ -60,34 +64,46 @@ export const updateUser = async(req, res)=>{
         const data = req.body
         const update = await User.findByIdAndUpdate(id, data, {new: true})
         if(!update) return res.status(404).send(
-            {success: false, message: 'User not found'}
+            {
+                success: false, message: 'User not found'
+            }
         )
         return res.send({success: true, message: 'User updated', user: update})
     }catch(e){
         console.error('General error', e)
-        return res.status(500).send({success: false, message: 'General error', err: e})
+        return res.status(500).send({message: 'General error', e})
     }
 }
 
 export const updatePassword = async (req, res) => {
     try {
-        let {id} = req.params;
-        let { newPassword, oldPassword } = req.body;
-        let user = await User.findById(id);
+        let {id} = req.params
+        let { newPassword, oldPassword } = req.body
+        let user = await User.findById(id)
         if (!user) return res.status(404).send(
-            { message: 'User not found' }
-        );
-        if (!user.password) {
-            return res.status(500).send({ message: 'Password not found in user data' })
-        }
-        let compare = await argon.verify(user.password, oldPassword);
-        if (!compare) return res.status(400).send({ message: 'Incorrect Password' })
+            { 
+                message: 'User not found' 
+            }
+        )
+        if (!user.password) return res.status(500).send(
+            { 
+                success: false,
+                message: 'Password not found in user data' 
+            }
+        )
+        let compare = await argon.verify(user.password, oldPassword)
+        if (!compare) return res.status(400).send(
+            { 
+                success: false,
+                message: 'Incorrect Password' 
+            }
+        )
         user.password = await encrypt(newPassword)
-        await user.save();
-        return res.send({ message: 'Password updated successfully' })
+        await user.save()
+        return res.send({success: true, message: 'Password updated successfully' })
     } catch (e) {
-        console.error(e);
-        return res.status(500).send({ message: 'Internal Server Error', error: e.message })
+        console.error(e)
+        return res.status(500).send({message: 'General error',e })
     }
 }
 
@@ -96,11 +112,14 @@ export const deleteUser = async(req, res)=>{
         const {id} = req.params
         const deleteUser= await User.findByIdAndDelete(id)
         if (!deleteUser)return res.status(404).send(
-            {Message: 'User not found'}
+            {
+                success: false,
+                message: 'User not found'
+            }
         )
-            return res.send({message: 'User deleted succesfully'})
+        return res.send({success: true, message: 'User deleted succesfully'})
     } catch (e) {
-        console.console.log(e);
+        console.console.log(e)
         return res.status(500).send({message: 'General Error',e})
     }   
 }

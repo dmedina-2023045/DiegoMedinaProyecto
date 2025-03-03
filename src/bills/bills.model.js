@@ -33,6 +33,6 @@ const billSchema = Schema({
         type: Date,
         default: Date.now
     }
-});
+})
 
-export default model('Bill', billSchema);
+export default model('Bill', billSchema)

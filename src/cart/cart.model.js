@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose'
 
 const cartSchema = Schema({
     user: {
@@ -22,6 +22,6 @@ const cartSchema = Schema({
         type: Number,
         default: 0
     }
-});
+})
 
-export default model('Cart', cartSchema);
+export default model('Cart', cartSchema)

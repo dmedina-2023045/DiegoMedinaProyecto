@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose'
 
 const productSchema = Schema({
     name: {
@@ -9,7 +9,7 @@ const productSchema = Schema({
         type: String,
         required: [true, 'Description is required']
     },
-    branch: {
+    brand: {
         type: String,
         required: [true, 'Branch is required']
     },

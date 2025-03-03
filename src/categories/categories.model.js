@@ -1,5 +1,3 @@
-'use strict'
-
 import { Schema, model } from "mongoose";
 
 const categorieSchema = Schema({
@@ -14,6 +12,6 @@ const categorieSchema = Schema({
         required: [true, 'Description is required'],
         maxLength: [128, `Can't be more than 128 characters`]
     }
-});
+})
 
-export default model('Categorie', categorieSchema);
+export default model('Categorie', categorieSchema)

@@ -1,11 +1,11 @@
 import Cart from './cart.model.js'
-import Product from '../products/product.model.js';
+import Product from '../products/product.model.js'
 
 export const addToCart = async (req, res) => {
     try {
         const {productId, quantity} = req.body
         const {uid} = req.user
-        const product = await Product.findById(productId);
+        const product = await Product.findById(productId)
         if (!product) return res.status(404).send(
             {
                 success: false,
@@ -20,7 +20,7 @@ export const addToCart = async (req, res) => {
                 total: 0
             }
         )
-        const productIndex = cart.products.findIndex(item => item.product.toString() === productId);
+        const productIndex = cart.products.findIndex(item => item.product.toString() === productId)
         if (productIndex > -1) {
             cart.products[productIndex].quantity += quantity
         } else {
@@ -31,7 +31,7 @@ export const addToCart = async (req, res) => {
         return res.status(200).send({success: true, message: 'Product added to cart successfully', cart})
     } catch (e) {
         console.error(e)
-        return res.status(500).send({success: false, message: 'Internal server error', e})
+        return res.status(500).send({message: 'General error', e})
     }
 }
 
@@ -54,7 +54,7 @@ export const getCart = async (req, res) => {
 
 export const removeFromCart = async (req, res) => {
     try {
-        const { productId } = req.body
+        const {productId} = req.body
         const {uid} = req.user
         const cart = await Cart.findOne({user: uid})
         if (!cart) return res.status(404).send(
@@ -63,7 +63,7 @@ export const removeFromCart = async (req, res) => {
                 message: 'Cart not found'
             }
         )
-        const productIndex = cart.products.findIndex(item => item.product.toString() === productId);
+        const productIndex = cart.products.findIndex(item => item.product.toString() === productId)
         if (productIndex === -1) return res.status(404).send(
             {
                 success: false,
@@ -77,9 +77,15 @@ export const removeFromCart = async (req, res) => {
                 message: 'Product not found in database'
             }
         )
+        if (product.stock < item.quantity) return res.status(400).send(
+            {
+                success: false,
+                message: `Not enough stock for product ${product.name}`
+            }
+        )
         cart.total -= product.price * cart.products[productIndex].quantity;
-        cart.products.splice(productIndex, 1);
-        await cart.save();
+        cart.products.splice(productIndex, 1)
+        await cart.save()
         return res.status(200).send({success: true, message: 'Product removed from cart successfully', cart})
     } catch (e) {
         console.error(e)

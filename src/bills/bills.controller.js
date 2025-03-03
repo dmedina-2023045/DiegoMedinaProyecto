@@ -6,7 +6,7 @@ export const addPurchase = async (req, res) => {
     try {
         const {uid} = req.user
         const {nit} = req.body
-        const cart = await Cart.findOne({user: uid}).populate('products.product');
+        const cart = await Cart.findOne({user: uid}).populate('products.product')
         if (!cart || cart.products.length === 0) return res.status(404).send(
             {
                 success: false,
@@ -14,7 +14,7 @@ export const addPurchase = async (req, res) => {
             }
         )
         for (const item of cart.products) {
-            const product = await Product.findById(item.product._id);
+            const product = await Product.findById(item.product._id)
         if (!product) return res.status(404).send(
                 {
                     success: false,
@@ -29,8 +29,8 @@ export const addPurchase = async (req, res) => {
             )
         }
         const bill = new Bill({
-            user: uid,
-            products: cart.products.map(item => ({
+                user: uid,
+                products: cart.products.map(item => ({
                 product: item.product._id,
                 quantity: item.quantity,
                 price: item.product.price
@@ -38,15 +38,15 @@ export const addPurchase = async (req, res) => {
             total: cart.total,
             nit: nit || null
         });
-        await bill.save();
+        await bill.save()
         for (const item of cart.products) {
-            const product = await Product.findById(item.product._id);
-            product.stock -= item.quantity;
-            await product.save();
+            const product = await Product.findById(item.product._id)
+            product.stock -= item.quantity
+            await product.save()
         }
-        cart.products = [];
-        cart.total = 0;
-        await cart.save();
+        cart.products = []
+        cart.total = 0
+        await cart.save()
         return res.status(201).send({success: true, message: 'Checkout completed successfully', invoice: bill})
     } catch (e) {
         console.error(e)
