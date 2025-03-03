@@ -1,0 +1,762 @@
+{
+	"info": {
+		"_postman_id": "3073a9d8-5834-41e8-9bc6-58c588b52604",
+		"name": "Final Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956971"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:2636/test",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Diego",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Medina",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "dmedina",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dmedina-2023045@kinal.edu.gt",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Hola123.$",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "45910878",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/register",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data = pm.response.json();\r",
+									"postman.setGlobalVariable('token', data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userLoggin",
+									"value": "dmedina-2023045",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Petungoat123..$$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/login",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getUsers",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:2636/getUserById/67b1881f95d1524a941db633",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getUserById",
+								"67b1881f95d1524a941db633"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Alexander",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/updateUser/67b1881f95d1524a941db633",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"updateUser",
+								"67b1881f95d1524a941db633"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "oldPassword",
+									"value": "Diego123.$",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "Hola123.$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/updatePassword/67b1881f95d1524a941db633",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"updatePassword",
+								"67b1881f95d1524a941db633"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/deleteUser/67b185362cba134b71d84c00",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"deleteUser",
+								"67b185362cba134b71d84c00"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Test",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/testCategory",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"testCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Video card",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Video card nvida 4070 by asus",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/addCategory",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"addCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getCategories",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategorieById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getCategorieById/67b25e35ce5781a9bfbef0f0",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getCategorieById",
+								"67b25e35ce5781a9bfbef0f0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategorie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Graphic card",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/updateCategorie/67b25e35ce5781a9bfbef0f0",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"updateCategorie",
+								"67b25e35ce5781a9bfbef0f0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategorie",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/deleteCategorie/67b25e35ce5781a9bfbef0f0",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"deleteCategorie",
+								"67b25e35ce5781a9bfbef0f0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "addProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/addProduct",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"addProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProduct",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getProducts",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getProductById/67c48adc4daf9cb83572bdaf",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getProductById",
+								"67c48adc4daf9cb83572bdaf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Nvidia rtx 5070",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/updateProduct/67c48adc4daf9cb83572bdaf",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"updateProduct",
+								"67c48adc4daf9cb83572bdaf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/deleteProduct/67c48adc4daf9cb83572bdaf",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"deleteProduct",
+								"67c48adc4daf9cb83572bdaf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "getCart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/getCart",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addToCart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/addToCart?product=67c4915ebfddfe9040404b1d&quantity=2&total",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"addToCart"
+							],
+							"query": [
+								{
+									"key": "product",
+									"value": "67c4915ebfddfe9040404b1d"
+								},
+								{
+									"key": "quantity",
+									"value": "2"
+								},
+								{
+									"key": "total",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeFromCart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/removeFromCart",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"removeFromCart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bill",
+			"item": [
+				{
+					"name": "addPurchase",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "NIT",
+									"value": "CF",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:2636/addPurchase",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"addPurchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "purchaseHistorial",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:2636/purchaseHistorial",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"purchaseHistorial"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
