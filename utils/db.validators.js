@@ -1,5 +1,6 @@
 import User from '../src/users/user.model.js'
 import Categorie from '../src/categories/categories.model.js'
+import Product from '../src/products/product.model.js'
 
 export const existUsername = async(username, user)=>{
     const alreadyUsername = await User.findOne({username})
@@ -23,7 +24,6 @@ export const notRequiredField = (field)=>{
     }
 }
 
-
 export const findUser = async(id)=>{
     try{
         const userExist = await User.findById(id)
@@ -35,11 +35,19 @@ export const findUser = async(id)=>{
     }
 }
 
-export const existCategorie = async(name, categorie)=>{
-    const alreadyCategorie = await Categorie.findOne({name})
-    if(alreadyCategorie && alreadyCategorie._id != categorie.uid){
-        console.error(`Categorie ${name} already exist`)
-        throw new Error(`Categorie ${name} already exist`)
+export const existCategorie = async (categorieId) => {
+    const categorie = await Categorie.findById(categorieId)
+    if (!categorie) {
+        console.error(`Product ${categorieId} not exist`)
+        throw new Error(`Product ${categorieId} not exist`)
+    }
+}
+
+export const existProduct = async (productId) => {
+    const product = await Product.findById(productId)
+    if (!product) {
+        console.error(`Product ${productId} not exist`)
+        throw new Error(`Product ${productId} not exist`)
     }
 }
 

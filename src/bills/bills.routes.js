@@ -6,6 +6,6 @@ const api = Router()
 
 api.post('/addPurchase', validateJwt, addPurchase)
 api.get('/purchaseHistorial', validateJwt, purchaseHistorial)
-
+//api.put('/updateBill',[validateJwt, isAdmin], updateBill)
 
 export default api

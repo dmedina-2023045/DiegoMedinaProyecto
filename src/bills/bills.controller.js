@@ -54,6 +54,44 @@ export const addPurchase = async (req, res) => {
     }
 }
 
+/* export const updateBill = async (req, res) => {
+    try {
+        const {billId} = req.params
+        const {products} = req.body
+        const bill = await Bill.findById(billId);
+        if (!bill) return res.status(404).send(
+            {
+                success: false,
+                message: 'Invoice not found'
+            }
+        )
+        for (const item of products) {
+            const product = await Product.findById(item.product);
+            if (!product) return res.status(404).send(
+                {
+                    success: false,
+                    message: `Product ${item.product} not found`
+                }
+            )
+            if (product.stock < item.quantity) return res.status(400).send(
+                {
+                    success: false, 
+                    message: `Not enough stock for product ${product.name}`
+                }
+            )
+            product.stock -= item.quantity;
+            await product.save();
+        }
+        bill.products = products
+        bill.total = products.reduce((sum, item) => sum + item.price * item.quantity, 0)
+        await bill.save();
+        return res.status(200).send({success: true, message: 'Invoice updated successfully', invoice: bill})
+    } catch (e) {
+        console.error(e);
+        return res.status(500).send({message: 'Internal server error', e})
+    }
+} */
+
 
 export const purchaseHistorial = async (req, res) => {
     try {

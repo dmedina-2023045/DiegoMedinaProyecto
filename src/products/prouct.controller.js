@@ -18,30 +18,29 @@ export const addProduct = async (req, res) => {
         console.error(e)
         return res.status(500).send({success: false, message: 'General error', e})
     }
-};
-
+}
 
 export const getProducts = async (req, res) => {
     try {
-        const { category, search, sort } = req.query
-        let query = {}
-        if (category) {
-            query.category = category
+        const { categorie, search, sort } = req.query;
+        let query = {};
+        if (categorie) {
+            query.categorie = categorie
         }
         if (search) {
-            query.name = {$regex: search, $options: 'i'}
+            query.name = { $regex: search, $options: 'i' }
         }
         let sortQuery = {}
         if (sort === 'popular') {
-            sortQuery = {sales: -1}
+            sortQuery = { sales: -1 }
         } else {
-            sortQuery = {name: 1}
+            sortQuery = { name: 1 }
         }
         const products = await Product.find(query).populate('category', 'name').sort(sortQuery)
-        return res.status(200).send({success: true, message: 'Products found: ', products})
+        return res.status(200).send({success: true, message: 'Products found', products})
     } catch (e) {
         console.error(e)
-        return res.status(500).send({message: 'General Error'}, e)
+        return res.status(500).send({message: 'General Error', e})
     }
 }
 

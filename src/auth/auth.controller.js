@@ -7,7 +7,6 @@ export const test = (req, res)=>{
     res.send({message: 'Test is running'})
 }
 
-
 export const register = async(req, res)=>{
     try{    
         let data = req.body
@@ -22,7 +21,6 @@ export const register = async(req, res)=>{
         return res.status(500).send({message: 'General error with user registration', err: e})
     }
 }
-
 
 export const login = async(req, res)=>{
     try{
